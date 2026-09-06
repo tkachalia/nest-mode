@@ -1,43 +1,70 @@
 {
-  "last_run_iso": "2026-09-05T18:30:00+00:00",
+  "current_month": 9,
+  "month_spend_dollars": 0.14,
+  "last_run_iso": "2026-09-06T16:06:57.106704+00:00",
+  "last_duke_pull_date": "2026-09-06",
+  "day_accumulator": {
+    "date": "2026-09-06",
+    "spend_at_start": 0.14,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 74.7,
+        "temp_max": 74.7,
+        "temp_sum": 74.7,
+        "humidity_min": null,
+        "humidity_max": null,
+        "humidity_sum": 0.0,
+        "count": 1
+      },
+      "Family Room": {
+        "temp_min": 77.5,
+        "temp_max": 77.5,
+        "temp_sum": 77.5,
+        "humidity_min": null,
+        "humidity_max": null,
+        "humidity_sum": 0.0,
+        "count": 1
+      }
+    }
+  },
   "zones": {
     "Bedroom": {
       "mode": "COOL",
       "hvac_status": "COOLING",
-      "ambient_f": 79.5,
-      "ambient_humidity_percent": 53,
-      "cool_setpoint_f": 76
+      "ambient_f": 74.7,
+      "heat_setpoint_f": null,
+      "cool_setpoint_f": 75.0
     },
     "Family Room": {
       "mode": "COOL",
       "hvac_status": "OFF",
-      "ambient_f": 75.6,
-      "ambient_humidity_percent": 46,
-      "cool_setpoint_f": 76
+      "ambient_f": 77.5,
+      "heat_setpoint_f": null,
+      "cool_setpoint_f": 77.9
     }
   },
   "projection": {
-    "spend_so_far": 210.4,
-    "avg_daily_spend": 15.03,
-    "projected_total": 451.0,
+    "spend_so_far": 0.14,
+    "avg_daily_spend": 0.03,
+    "projected_total": 0.84,
     "budget": 250,
-    "over_under": 201.0,
-    "pct_of_budget": 180
+    "over_under": -249.16,
+    "pct_of_budget": 0
+  },
+  "decisions": {
+    "Bedroom": {
+      "action": "hold",
+      "reason": "tracking within budget"
+    },
+    "Family Room": {
+      "action": "hold",
+      "reason": "tracking within budget"
+    }
   },
   "config_snapshot": {
     "budget": 250,
     "cooling_ceiling_f": 78,
     "heating_floor_f": 66,
     "step_size_f": 1
-  },
-  "decisions": {
-    "Bedroom": {
-      "action": "hold",
-      "reason": "at comfort ceiling (78F), over budget by $201.0, likely a hardware/insulation issue rather than a thermostat fix"
-    },
-    "Family Room": {
-      "action": "hold",
-      "reason": "tracking within budget"
-    }
   }
 }

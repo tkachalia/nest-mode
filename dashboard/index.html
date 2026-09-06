@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Flex:opsz,wght@8..144,300..700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #F1F3F4;
+    --surface: #FFFFFF;
+    --surface-alt: #F8F9FA;
+    --text: #1F1F1F;
+    --text-dim: #5F6368;
+    --text-faint: #80868B;
+    --blue: #1A73E8;
+    --green: #1E8E3E;
+    --amber: #F9AB00;
+    --red: #D93025;
+    --divider: #E8EAED;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--text);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .screen { max-width: 480px; margin: 0 auto; padding: 20px 16px 60px; min-height: 100vh; }
+
+  /* App bar */
+  .app-bar { display: flex; justify-content: space-between; align-items: center; padding: 8px 4px 20px; }
+  .app-bar .brand { display: flex; align-items: baseline; gap: 8px; }
+  .app-bar .brand-mark { font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.5px; color: #5F6368; font-family: 'Roboto', sans-serif; }
+  .app-bar .brand-sub { font-size: 13px; font-weight: 500; color: var(--text-faint); }
+  .app-bar .updated { font-size: 12px; color: var(--text-faint); }
+
+  /* Section labels */
+  .section-label { font-size: 13px; font-weight: 500; color: var(--text-dim); margin: 22px 4px 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .section-label:first-of-type { margin-top: 0; }
+
+  /* Zone temperature tiles */
+  .zones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .zone-tile {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 16px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .zone-tile .tile-top { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 6px; }
+  .zone-tile .zone-name { font-size: 13px; font-weight: 600; color: var(--text-dim); }
+  .zone-tile .mode-chip {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .zone-tile .mode-chip svg { width: 14px; height: 14px; }
+  .zone-ring { position: relative; width: 128px; height: 128px; margin: 4px 0 2px; }
+  .zone-ring svg { transform: rotate(-90deg); }
+  .zone-ring .track { fill: none; stroke: var(--divider); stroke-width: 9; }
+  .zone-ring .progress { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dasharray 0.6s ease, stroke 0.6s ease; }
+  .zone-ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .zone-ring-temp { font-size: 34px; font-weight: 400; line-height: 1; color: var(--text); }
+  .zone-ring-temp .unit { font-size: 15px; vertical-align: top; position: relative; top: 3px; }
+  .zone-ring-sub { font-size: 11px; font-weight: 600; margin-top: 3px; letter-spacing: 0.2px; }
+  .zone-tile .zone-target { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+
+  /* Humidity section */
+  .humidity-card { background: var(--surface); border-radius: var(--radius-md); padding: 4px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+  .humidity-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--divider); }
+  .humidity-row:last-child { border-bottom: none; }
+  .humidity-icon { width: 36px; height: 36px; border-radius: 50%; background: #E8F0FE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .humidity-icon svg { width: 18px; height: 18px; }
+  .humidity-info { flex: 1; }
+  .humidity-info .zname { font-size: 14px; font-weight: 500; }
+  .humidity-info .desc { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+  .humidity-pct { font-size: 20px; font-weight: 400; color: var(--text); }
+  .humidity-track { height: 6px; border-radius: 4px; background: var(--divider); margin-top: 8px; overflow: hidden; }
+  .humidity-fill { height: 100%; border-radius: 4px; background: var(--blue); }
+
+  /* Generic surface card */
+  .card { background: var(--surface); border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .card-header .title { font-size: 15px; font-weight: 500; }
+  .card-header .badge { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; }
+  .badge.ok { color: var(--green); background: #E6F4EA; }
+  .badge.warn { color: var(--red); background: #FCE8E6; }
+  .edit-chip {
+    background: var(--surface-alt); border: 1px solid var(--divider); color: var(--blue);
+    font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .edit-chip:active { background: #E8EAED; }
+
+  .budget-bar-track { height: 8px; border-radius: 6px; background: var(--divider); overflow: hidden; margin-bottom: 16px; }
+  .budget-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease, background 0.6s ease; }
+  .budget-figures { display: flex; }
+  .budget-figures div { text-align: center; flex: 1; }
+  .budget-figures .num { font-size: 19px; font-weight: 500; }
+  .budget-figures .lbl { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+  .budget-figures .divider-v { border-left: 1px solid var(--divider); flex: 0; }
+
+  .comfort-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--divider); font-size: 14px; }
+  .comfort-row:last-child { border-bottom: none; }
+  .comfort-row .val { color: var(--text-dim); font-weight: 500; }
+
+  .activity-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--divider); align-items: flex-start; }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .activity-icon.nudge { background: #FEF3E0; }
+  .activity-icon.limit { background: #FCE8E6; }
+  .activity-icon.hold { background: #E6F4EA; }
+  .activity-icon svg { width: 16px; height: 16px; }
+  .activity-text { font-size: 13px; line-height: 1.45; padding-top: 2px; }
+  .activity-text .zone-label { font-weight: 500; color: var(--text); }
+  .activity-text .when { color: var(--text-faint); font-size: 12px; display: block; margin-top: 2px; }
+
+  .empty { color: var(--text-faint); font-size: 13px; text-align: center; padding: 24px 0; }
+
+  .card + .card { margin-top: 12px; }
+
+  /* History chart */
+  .toggle-row { display: flex; gap: 8px; margin-bottom: 12px; }
+  .toggle-btn {
+    flex: 1; padding: 9px 4px; border-radius: 999px; border: 1px solid var(--divider);
+    background: var(--surface-alt); color: var(--text-dim); font-size: 13px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+  }
+  .toggle-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .chart-wrap { position: relative; height: 220px; margin-top: 4px; }
+  .chart-legend { display: flex; justify-content: center; gap: 18px; margin-top: 10px; font-size: 12px; color: var(--text-dim); }
+  .chart-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
+
+  /* Edit modal */
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(32,33,36,0.5); align-items: flex-end; justify-content: center; z-index: 10; }
+  .overlay.open { display: flex; }
+  .sheet { background: var(--surface); width: 100%; max-width: 480px; border-radius: 28px 28px 0 0; padding: 8px 20px 28px; }
+  .sheet-handle { width: 32px; height: 4px; background: var(--divider); border-radius: 4px; margin: 8px auto 18px; }
+  .sheet h2 { font-size: 18px; font-weight: 500; margin: 0 0 20px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; font-weight: 500; }
+  .field input {
+    width: 100%; background: var(--surface-alt); border: 1px solid var(--divider); border-radius: 12px;
+    padding: 13px 14px; color: var(--text); font-size: 16px; font-family: inherit;
+  }
+  .field input:focus { outline: none; border-color: var(--blue); }
+  .sheet-buttons { display: flex; gap: 10px; margin-top: 10px; }
+  .sheet-buttons button { flex: 1; padding: 14px; border-radius: 999px; border: none; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; }
+  .btn-cancel { background: var(--surface-alt); color: var(--text); }
+  .btn-save { background: var(--blue); color: #fff; }
+  .save-status { font-size: 12px; color: var(--text-dim); margin-top: 12px; text-align: center; min-height: 16px; }
+</style>
+</head>
+<body>
+<div class="screen">
+
+  <div class="app-bar">
+    <div class="brand">
+      <span class="brand-mark">nest</span>
+      <span class="brand-sub">Comfort Mode</span>
+    </div>
+    <div class="updated" id="lastUpdated">—</div>
+  </div>
+
+  <div class="section-label">Temperature</div>
+  <div class="zones-grid" id="zonesGrid">
+    <div class="zone-tile" style="background:#DADCE0;"><div class="empty" style="color:#fff;">Loading…</div></div>
+  </div>
+
+  <div class="section-label">Humidity</div>
+  <div class="humidity-card" id="humidityCard">
+    <div class="empty">No data yet</div>
+  </div>
+
+  <div class="section-label">Budget</div>
+  <div class="card">
+    <div class="card-header">
+      <span class="title">This month</span>
+      <span class="edit-chip" id="editBudgetBtn">Edit</span>
+    </div>
+    <div class="card-header" style="margin-top:-10px; margin-bottom: 12px;">
+      <span class="badge" id="budgetPct">—</span>
+      <span></span>
+    </div>
+    <div class="budget-bar-track"><div class="budget-bar-fill" id="budgetFill" style="width:0%"></div></div>
+    <div class="budget-figures">
+      <div><div class="num" id="spendSoFar">$—</div><div class="lbl">Spent so far</div></div>
+      <div><div class="num" id="projectedTotal">$—</div><div class="lbl">Projected</div></div>
+      <div><div class="num" id="budgetTarget">$—</div><div class="lbl">Budget</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="title">Comfort limits</span></div>
+    <div class="comfort-row"><span>Won't cool above</span><span class="val" id="coolCeiling">—</span></div>
+    <div class="comfort-row"><span>Won't heat below</span><span class="val" id="heatFloor">—</span></div>
+    <div class="comfort-row"><span>Adjustment step</span><span class="val" id="stepSize">—</span></div>
+  </div>
+
+  <div class="section-label">Activity</div>
+  <div class="card">
+    <div id="activityList"><div class="empty">No data yet</div></div>
+  </div>
+
+  <div class="section-label">History</div>
+  <div class="card">
+    <div class="toggle-row" id="metricToggle">
+      <button class="toggle-btn active" data-metric="dollars">$</button>
+      <button class="toggle-btn" data-metric="temp">Temp</button>
+      <button class="toggle-btn" data-metric="humidity">Humidity</button>
+    </div>
+    <div class="toggle-row" id="scaleToggle">
+      <button class="toggle-btn active" data-scale="day">Day</button>
+      <button class="toggle-btn" data-scale="month">Month</button>
+      <button class="toggle-btn" data-scale="year">Year</button>
+    </div>
+    <div class="chart-wrap"><canvas id="historyChart"></canvas></div>
+    <div class="chart-legend" id="chartLegend"></div>
+  </div>
+
+</div>
+
+<!-- Edit budget sheet -->
+<div class="overlay" id="editOverlay">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>Edit budget & limits</h2>
+    <div class="field">
+      <label>Monthly budget ($)</label>
+      <input type="number" id="inputBudget" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label>Won't cool above (°F)</label>
+      <input type="number" id="inputCeiling" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label>Won't heat below (°F)</label>
+      <input type="number" id="inputFloor" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label>Adjustment step (°F)</label>
+      <input type="number" id="inputStep" inputmode="numeric" step="0.5">
+    </div>
+    <div class="sheet-buttons">
+      <button class="btn-cancel" id="cancelEdit">Cancel</button>
+      <button class="btn-save" id="saveEdit">Save</button>
+    </div>
+    <div class="save-status" id="saveStatus"></div>
+  </div>
+</div>
+
+<script>
+const REPO_OWNER = "YOUR_GITHUB_USERNAME";   // fill in once before deploying
+const REPO_NAME = "YOUR_REPO_NAME";          // fill in once before deploying
+const SETTINGS_PATH = "dashboard/settings.json";
+
+let currentState = {};
+
+const ICONS = {
+  snow: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M2 12h20M6 4l1 3-3 1M18 4l-1 3 3 1M6 20l1-3-3-1M18 20l-1-3 3-1"/></svg>`,
+  flame: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-3 4-3 8a3 3 0 006 0c1.5 1 2 3 2 4.5A5.5 5.5 0 0111.5 20 6.5 6.5 0 015 13.5C5 9 8 6 12 2z"/></svg>`,
+  off: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>`,
+  drop: `<svg viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="1.8"><path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/></svg>`,
+  up: `<svg viewBox="0 0 24 24" fill="none" stroke="#F9AB00" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`,
+  warn: `<svg viewBox="0 0 24 24" fill="none" stroke="#D93025" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.5 18a1 1 0 00.9 1.5h17.2a1 1 0 00.9-1.5L13.7 3.9a1 1 0 00-1.4 0z"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>`,
+};
+
+async function loadState() {
+  try {
+    const res = await fetch('./state.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('no state file yet');
+    const state = await res.json();
+    currentState = state;
+    render(state);
+  } catch (e) {
+    document.getElementById('activityList').innerHTML =
+      '<div class="empty">No data yet. The tool runs every 15 minutes once configured.</div>';
+  }
+}
+
+// Dynamic hot/cold color: blue around 65F, green ~72F, amber ~78F, red 85F+
+function tempToColor(f) {
+  const stops = [
+    { t: 64, c: [66, 133, 244] },   // blue
+    { t: 71, c: [30, 142, 62] },    // green (comfortable)
+    { t: 76, c: [249, 171, 0] },    // amber
+    { t: 82, c: [217, 48, 37] },    // red
+  ];
+  const clamped = Math.max(stops[0].t, Math.min(stops[stops.length - 1].t, f));
+  for (let i = 0; i < stops.length - 1; i++) {
+    const a = stops[i], b = stops[i + 1];
+    if (clamped >= a.t && clamped <= b.t) {
+      const frac = (clamped - a.t) / (b.t - a.t);
+      const c = a.c.map((v, idx) => Math.round(v + (b.c[idx] - v) * frac));
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    }
+  }
+  return `rgb(${stops[stops.length - 1].c.join(',')})`;
+}
+
+function humidityDescription(pct) {
+  if (pct == null) return { label: '—', color: 'var(--divider)' };
+  if (pct < 40) return { label: 'Dry', color: '#F9AB00' };
+  if (pct < 50) return { label: 'Comfortable', color: '#1E8E3E' };
+  if (pct < 60) return { label: 'Humid', color: '#F9AB00' };
+  return { label: 'Very humid', color: '#D93025' };
+}
+
+function renderZoneTile(name, t) {
+  const isCool = t.mode === 'COOL';
+  const isHeat = t.mode === 'HEAT';
+  const displayTemp = t.ambient_f != null ? t.ambient_f : (isCool ? t.cool_setpoint_f : t.heat_setpoint_f);
+  const setpoint = isCool ? t.cool_setpoint_f : (isHeat ? t.heat_setpoint_f : null);
+  const ringColor = displayTemp != null ? tempToColor(displayTemp) : '#9AA0A6';
+  const icon = t.hvac_status === 'COOLING' ? ICONS.snow : (t.hvac_status === 'HEATING' ? ICONS.flame : ICONS.off);
+  const statusLabel = t.hvac_status === 'COOLING' ? 'Cooling' : (t.hvac_status === 'HEATING' ? 'Heating' : 'Idle');
+
+  // Ring fill fraction: where the current temp sits within a 60-88F visual range
+  const circumference = 2 * Math.PI * 54;
+  const fraction = displayTemp != null ? Math.min(1, Math.max(0.06, (displayTemp - 60) / (88 - 60))) : 0.5;
+
+  return `
+    <div class="zone-tile">
+      <div class="tile-top">
+        <span class="zone-name">${name}</span>
+        <span class="mode-chip" style="background:${ringColor}22; color:${ringColor};">${icon}</span>
+      </div>
+      <div class="zone-ring">
+        <svg width="128" height="128" viewBox="0 0 128 128">
+          <circle class="track" cx="64" cy="64" r="54"></circle>
+          <circle class="progress" cx="64" cy="64" r="54"
+            stroke="${ringColor}"
+            stroke-dasharray="${circumference * fraction} ${circumference}"></circle>
+        </svg>
+        <div class="zone-ring-center">
+          <div class="zone-ring-temp">${displayTemp != null ? Math.round(displayTemp) : '--'}<span class="unit">°F</span></div>
+          <div class="zone-ring-sub" style="color:${ringColor};">${statusLabel}</div>
+        </div>
+      </div>
+      <div class="zone-target">${setpoint != null ? 'Target ' + Math.round(setpoint) + '°F' : (t.mode || 'Off')}</div>
+    </div>
+  `;
+}
+
+function renderHumidityRow(name, t) {
+  const pct = t.ambient_humidity_percent;
+  const desc = humidityDescription(pct);
+  return `
+    <div class="humidity-row">
+      <div class="humidity-icon">${ICONS.drop}</div>
+      <div class="humidity-info">
+        <div class="zname">${name}</div>
+        <div class="desc">${desc.label}</div>
+        <div class="humidity-track"><div class="humidity-fill" style="width:${pct || 0}%; background:${desc.color};"></div></div>
+      </div>
+      <div class="humidity-pct">${pct != null ? pct + '%' : '—'}</div>
+    </div>
+  `;
+}
+
+function render(state) {
+  const zones = state.zones || {};
+  const proj = state.projection || {};
+  const cfg = state.config_snapshot || {};
+  const decisions = state.decisions || {};
+
+  if (state.last_run_iso) {
+    const d = new Date(state.last_run_iso);
+    document.getElementById('lastUpdated').textContent =
+      'Updated ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  const zoneNames = Object.keys(zones);
+  document.getElementById('zonesGrid').innerHTML = zoneNames.length
+    ? zoneNames.map(name => renderZoneTile(name, zones[name])).join('')
+    : '<div class="zone-tile" style="background:#DADCE0;"><div class="empty" style="color:#fff;">No zones yet</div></div>';
+
+  document.getElementById('humidityCard').innerHTML = zoneNames.length
+    ? zoneNames.map(name => renderHumidityRow(name, zones[name])).join('')
+    : '<div class="empty">No data yet</div>';
+
+  const pctEl = document.getElementById('budgetPct');
+  if (proj.pct_of_budget != null) {
+    pctEl.textContent = proj.pct_of_budget + '% of budget';
+    pctEl.className = 'badge ' + (proj.pct_of_budget > 100 ? 'warn' : 'ok');
+  }
+  const fillPct = proj.pct_of_budget != null ? Math.min(proj.pct_of_budget, 100) : 0;
+  const fill = document.getElementById('budgetFill');
+  fill.style.width = fillPct + '%';
+  fill.style.background = (proj.pct_of_budget || 0) > 100 ? 'var(--red)' : 'var(--green)';
+
+  document.getElementById('spendSoFar').textContent = proj.spend_so_far != null ? '$' + proj.spend_so_far.toFixed(0) : '$—';
+  document.getElementById('projectedTotal').textContent = proj.projected_total != null ? '$' + proj.projected_total.toFixed(0) : '$—';
+  document.getElementById('budgetTarget').textContent = proj.budget != null ? '$' + proj.budget.toFixed(0) : '$—';
+
+  document.getElementById('coolCeiling').textContent = cfg.cooling_ceiling_f != null ? cfg.cooling_ceiling_f + '°F' : '—';
+  document.getElementById('heatFloor').textContent = cfg.heating_floor_f != null ? cfg.heating_floor_f + '°F' : '—';
+  document.getElementById('stepSize').textContent = (cfg.step_size_f || '1') + '°F per adjustment';
+
+  const decisionNames = Object.keys(decisions);
+  document.getElementById('activityList').innerHTML = decisionNames.length
+    ? decisionNames.map(name => {
+        const d = decisions[name];
+        const isNudge = (d.action || '').startsWith('nudge');
+        const isLimit = (d.reason || '').includes('comfort');
+        const iconClass = isNudge ? 'nudge' : (isLimit ? 'limit' : 'hold');
+        const icon = isNudge ? ICONS.up : (isLimit ? ICONS.warn : ICONS.check);
+        const label = d.action === 'nudge_cool' ? `Raised cooling to ${d.new_setpoint_f}°F`
+          : d.action === 'nudge_heat' ? `Lowered heating to ${d.new_setpoint_f}°F`
+          : 'Holding current setpoint';
+        return `
+          <div class="activity-item">
+            <div class="activity-icon ${iconClass}">${icon}</div>
+            <div class="activity-text"><span class="zone-label">${name}</span> — ${label}
+              <span class="when">${d.reason || ''}</span>
+            </div>
+          </div>`;
+      }).join('')
+    : '<div class="empty">No data yet</div>';
+}
+
+function getToken() {
+  let token = localStorage.getItem('gh_pat');
+  if (!token) {
+    token = prompt(
+      "Enter a GitHub personal access token (fine-grained, Contents: Read & write, scoped to this one repo only). " +
+      "It's stored only in this browser, never sent anywhere except GitHub."
+    );
+    if (token) localStorage.setItem('gh_pat', token);
+  }
+  return token;
+}
+
+document.getElementById('editBudgetBtn').addEventListener('click', () => {
+  const cfg = currentState.config_snapshot || {};
+  document.getElementById('inputBudget').value = cfg.budget || '';
+  document.getElementById('inputCeiling').value = cfg.cooling_ceiling_f || '';
+  document.getElementById('inputFloor').value = cfg.heating_floor_f || '';
+  document.getElementById('inputStep').value = cfg.step_size_f || 1;
+  document.getElementById('saveStatus').textContent = '';
+  document.getElementById('editOverlay').classList.add('open');
+});
+document.getElementById('cancelEdit').addEventListener('click', () => {
+  document.getElementById('editOverlay').classList.remove('open');
+});
+
+document.getElementById('saveEdit').addEventListener('click', async () => {
+  const statusEl = document.getElementById('saveStatus');
+  const token = getToken();
+  if (!token) { statusEl.textContent = 'Cancelled — no token entered.'; return; }
+
+  const newSettings = {
+    monthly_target_dollars: parseFloat(document.getElementById('inputBudget').value),
+    cooling_ceiling_f: parseFloat(document.getElementById('inputCeiling').value),
+    heating_floor_f: parseFloat(document.getElementById('inputFloor').value),
+    step_size_f: parseFloat(document.getElementById('inputStep').value),
+  };
+
+  statusEl.textContent = 'Saving…';
+  try {
+    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${SETTINGS_PATH}`;
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `Bearer ${token}` } });
+    if (!getRes.ok) throw new Error('Could not read current settings.json (check token/repo name).');
+    const currentFile = await getRes.json();
+
+    const content = btoa(JSON.stringify(newSettings, null, 2));
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Update budget/comfort settings from dashboard',
+        content: content,
+        sha: currentFile.sha,
+      }),
+    });
+    if (!putRes.ok) throw new Error('GitHub rejected the update — check token permissions.');
+
+    statusEl.textContent = 'Saved. Takes effect on the next run (within 15 min).';
+    setTimeout(() => document.getElementById('editOverlay').classList.remove('open'), 1400);
+  } catch (err) {
+    statusEl.textContent = err.message;
+  }
+});
+
+loadState();
+setInterval(loadState, 60000);
+
+// --- History chart ---
+let historyData = [];
+let currentMetric = 'dollars';
+let currentScale = 'day';
+let chartInstance = null;
+
+const ZONE_COLORS = {
+  0: { line: '#1A73E8', fill: 'rgba(26,115,232,0.18)' },
+  1: { line: '#D93025', fill: 'rgba(217,48,37,0.18)' },
+  2: { line: '#1E8E3E', fill: 'rgba(30,142,62,0.18)' },
+};
+
+async function loadHistory() {
+  try {
+    const res = await fetch('./history.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('no history yet');
+    historyData = await res.json();
+  } catch (e) {
+    historyData = [];
+  }
+  buildChart();
+}
+
+function getDailyEntries() {
+  return historyData.filter(e => e.type === 'daily').sort((a, b) => a.date.localeCompare(b.date));
+}
+function getBackfilledMonths() {
+  return historyData.filter(e => e.type === 'backfilled_month');
+}
+
+function aggregateByMonth(dailyEntries) {
+  const byMonth = {};
+  dailyEntries.forEach(e => {
+    const month = e.date.slice(0, 7);
+    if (!byMonth[month]) byMonth[month] = { spend: 0, zones: {} };
+    byMonth[month].spend += e.spend || 0;
+    Object.entries(e.zones || {}).forEach(([name, z]) => {
+      const zm = byMonth[month].zones[name] || { temp_min: null, temp_max: null, humidity_min: null, humidity_max: null };
+      if (z.temp_min != null) zm.temp_min = zm.temp_min == null ? z.temp_min : Math.min(zm.temp_min, z.temp_min);
+      if (z.temp_max != null) zm.temp_max = zm.temp_max == null ? z.temp_max : Math.max(zm.temp_max, z.temp_max);
+      if (z.humidity_min != null) zm.humidity_min = zm.humidity_min == null ? z.humidity_min : Math.min(zm.humidity_min, z.humidity_min);
+      if (z.humidity_max != null) zm.humidity_max = zm.humidity_max == null ? z.humidity_max : Math.max(zm.humidity_max, z.humidity_max);
+      byMonth[month].zones[name] = zm;
+    });
+  });
+  return byMonth;
+}
+
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function monthLabel(monthKey) {
+  const [y, m] = monthKey.split('-');
+  return MONTH_NAMES[parseInt(m, 10) - 1];
+}
+
+function buildDollarsDataset() {
+  if (currentScale === 'day') {
+    const daily = getDailyEntries().slice(-30);
+    return {
+      labels: daily.map(e => e.date.slice(5)),
+      datasets: [{
+        label: 'Daily spend',
+        data: daily.map(e => e.spend),
+        borderColor: '#1A73E8',
+        backgroundColor: 'rgba(26,115,232,0.12)',
+        fill: true,
+        pointRadius: 2,
+        tension: 0.3,
+        borderWidth: 2,
+      }],
+      type: 'line',
+    };
+  }
+  if (currentScale === 'month') {
+    const daily = getDailyEntries();
+    const byMonth = aggregateByMonth(daily);
+    const backfilled = getBackfilledMonths();
+    const merged = {};
+    backfilled.forEach(b => merged[b.month] = b.total_dollars);
+    Object.entries(byMonth).forEach(([m, v]) => merged[m] = v.spend);
+    const months = Object.keys(merged).sort().slice(-12);
+    return {
+      labels: months.map(monthLabel),
+      datasets: [{
+        label: 'Monthly spend',
+        data: months.map(m => Math.round(merged[m])),
+        borderColor: '#1A73E8',
+        backgroundColor: 'rgba(26,115,232,0.12)',
+        fill: true,
+        pointRadius: 3,
+        tension: 0.3,
+        borderWidth: 2,
+      }],
+      type: 'line',
+    };
+  }
+  const daily = getDailyEntries();
+  const byMonth = aggregateByMonth(daily);
+  const backfilled = getBackfilledMonths();
+  const merged = {};
+  backfilled.forEach(b => merged[b.month] = b.total_dollars);
+  Object.entries(byMonth).forEach(([m, v]) => merged[m] = v.spend);
+  const byYear = {};
+  Object.entries(merged).forEach(([m, v]) => {
+    const y = m.slice(0, 4);
+    byYear[y] = (byYear[y] || 0) + v;
+  });
+  const years = Object.keys(byYear).sort();
+  return {
+    labels: years,
+    datasets: [{
+      label: 'Yearly spend',
+      data: years.map(y => Math.round(byYear[y])),
+      borderColor: '#1A73E8',
+      backgroundColor: 'rgba(26,115,232,0.12)',
+      fill: true,
+      pointRadius: 4,
+      tension: 0.3,
+      borderWidth: 2,
+    }],
+    type: 'line',
+  };
+}
+
+function buildRangeDataset(field) {
+  // field: 'temp' or 'humidity'
+  const minKey = field + '_min', maxKey = field + '_max';
+  let labels = [];
+  let byZoneMin = {}, byZoneMax = {};
+
+  if (currentScale === 'day') {
+    const daily = getDailyEntries().slice(-30);
+    labels = daily.map(e => e.date.slice(5));
+    daily.forEach(e => {
+      Object.entries(e.zones || {}).forEach(([name, z]) => {
+        (byZoneMin[name] = byZoneMin[name] || []).push(z[minKey]);
+        (byZoneMax[name] = byZoneMax[name] || []).push(z[maxKey]);
+      });
+    });
+  } else {
+    const daily = getDailyEntries();
+    const byMonth = aggregateByMonth(daily);
+    const months = Object.keys(byMonth).sort();
+    const useMonths = currentScale === 'month' ? months.slice(-12) : months;
+    labels = currentScale === 'month' ? useMonths : [...new Set(useMonths.map(m => m.slice(0,4)))];
+
+    if (currentScale === 'month') {
+      useMonths.forEach(m => {
+        Object.entries(byMonth[m].zones).forEach(([name, z]) => {
+          (byZoneMin[name] = byZoneMin[name] || []).push(z[minKey]);
+          (byZoneMax[name] = byZoneMax[name] || []).push(z[maxKey]);
+        });
+      });
+    } else {
+      // year: min/max across all months in that year
+      const byYearZone = {};
+      useMonths.forEach(m => {
+        const y = m.slice(0, 4);
+        Object.entries(byMonth[m].zones).forEach(([name, z]) => {
+          byYearZone[y] = byYearZone[y] || {};
+          const zz = byYearZone[y][name] || { min: null, max: null };
+          if (z[minKey] != null) zz.min = zz.min == null ? z[minKey] : Math.min(zz.min, z[minKey]);
+          if (z[maxKey] != null) zz.max = zz.max == null ? z[maxKey] : Math.max(zz.max, z[maxKey]);
+          byYearZone[y][name] = zz;
+        });
+      });
+      labels.forEach(y => {
+        Object.entries(byYearZone[y] || {}).forEach(([name, zz]) => {
+          (byZoneMin[name] = byZoneMin[name] || []).push(zz.min);
+          (byZoneMax[name] = byZoneMax[name] || []).push(zz.max);
+        });
+      });
+    }
+  }
+
+  const datasets = [];
+  Object.keys(byZoneMin).forEach((name, idx) => {
+    const color = ZONE_COLORS[idx % 3];
+    datasets.push({
+      label: name + ' max',
+      data: byZoneMax[name],
+      borderColor: color.line,
+      backgroundColor: color.fill,
+      fill: '+1',
+      pointRadius: 0,
+      tension: 0.3,
+      borderWidth: 1.5,
+    });
+    datasets.push({
+      label: name + ' min',
+      data: byZoneMin[name],
+      borderColor: color.line,
+      backgroundColor: 'transparent',
+      fill: false,
+      pointRadius: 0,
+      tension: 0.3,
+      borderWidth: 1.5,
+    });
+  });
+
+  return { labels, datasets, type: 'line' };
+}
+
+function buildChart() {
+  const ctx = document.getElementById('historyChart').getContext('2d');
+  let config;
+  if (currentMetric === 'dollars') {
+    config = buildDollarsDataset();
+  } else {
+    config = buildRangeDataset(currentMetric === 'temp' ? 'temp' : 'humidity');
+  }
+
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: config.type,
+    data: { labels: config.labels, datasets: config.datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#80868B', font: { size: 11 } }, grid: { display: false } },
+        y: { ticks: { color: '#80868B', font: { size: 11 } }, grid: { color: '#E8EAED' } },
+      },
+    },
+  });
+
+  // Custom legend (skip for $ metric, which has one series)
+  const legendEl = document.getElementById('chartLegend');
+  if (currentMetric === 'dollars') {
+    legendEl.innerHTML = '';
+  } else {
+    const zoneNames = [...new Set(config.datasets.map(d => d.label.replace(/ (min|max)$/, '')))];
+    legendEl.innerHTML = zoneNames.map((name, idx) => {
+      const color = ZONE_COLORS[idx % 3].line;
+      return `<span><span class="swatch" style="background:${color}"></span>${name}</span>`;
+    }).join('');
+  }
+}
+
+document.getElementById('metricToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('.toggle-btn');
+  if (!btn) return;
+  document.querySelectorAll('#metricToggle .toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentMetric = btn.dataset.metric;
+  buildChart();
+});
+document.getElementById('scaleToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('.toggle-btn');
+  if (!btn) return;
+  document.querySelectorAll('#scaleToggle .toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentScale = btn.dataset.scale;
+  buildChart();
+});
+
+loadHistory();
+
+</script>
+</body>
+</html>

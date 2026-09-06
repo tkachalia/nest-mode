@@ -1,0 +1,39 @@
+{
+  "duke_energy": {
+    "email": "YOUR_DUKE_ENERGY_LOGIN_EMAIL",
+    "password": "YOUR_DUKE_ENERGY_PASSWORD",
+    "rate_per_kwh": 0.12
+  },
+  "nest": {
+    "project_id": "YOUR_SDM_DEVICE_ACCESS_PROJECT_ID",
+    "client_id": "YOUR_OAUTH_CLIENT_ID",
+    "client_secret": "YOUR_OAUTH_CLIENT_SECRET",
+    "refresh_token": "YOUR_OAUTH_REFRESH_TOKEN",
+    "zones": [
+      {
+        "name": "Bedroom",
+        "device_id": "YOUR_BEDROOM_DEVICE_ID",
+        "estimated_watts_cooling": 3500,
+        "estimated_watts_heating": 4000
+      },
+      {
+        "name": "Family Room",
+        "device_id": "YOUR_FAMILY_ROOM_DEVICE_ID",
+        "estimated_watts_cooling": 3500,
+        "estimated_watts_heating": 4000
+      }
+    ]
+  },
+  "budget": {
+    "monthly_target_dollars": 250,
+    "step_size_f": 1,
+    "check_interval_minutes": 15
+  },
+  "comfort": {
+    "cooling_ceiling_f": 78,
+    "heating_floor_f": 66
+  },
+  "notifications": {
+    "ntfy_topic": "YOUR_UNIQUE_NTFY_TOPIC_NAME"
+  }
+}

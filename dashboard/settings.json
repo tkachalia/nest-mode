@@ -1,0 +1,6 @@
+{
+  "monthly_target_dollars": 250,
+  "cooling_ceiling_f": 78,
+  "heating_floor_f": 66,
+  "step_size_f": 1
+}

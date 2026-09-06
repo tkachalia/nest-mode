@@ -1,0 +1,977 @@
+[
+  {
+    "type": "backfilled_month",
+    "month": "2025-09",
+    "total_dollars": 268
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2025-10",
+    "total_dollars": 201
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2025-11",
+    "total_dollars": 175
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2025-12",
+    "total_dollars": 220
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-01",
+    "total_dollars": 245
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-02",
+    "total_dollars": 210
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-03",
+    "total_dollars": 190
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-04",
+    "total_dollars": 180
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-05",
+    "total_dollars": 260
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-06",
+    "total_dollars": 350
+  },
+  {
+    "type": "backfilled_month",
+    "month": "2026-07",
+    "total_dollars": 420
+  },
+  {
+    "type": "daily",
+    "date": "2026-07-27",
+    "spend": 16.42,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.9,
+        "temp_max": 81.0,
+        "temp_avg": 79.5,
+        "humidity_min": 48.4,
+        "humidity_max": 61.2,
+        "humidity_avg": 50.4
+      },
+      "Family Room": {
+        "temp_min": 73.8,
+        "temp_max": 76.2,
+        "temp_avg": 75.0,
+        "humidity_min": 42.1,
+        "humidity_max": 48.2,
+        "humidity_avg": 44.9
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-07-28",
+    "spend": 15.27,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.5,
+        "temp_max": 80.6,
+        "temp_avg": 79.0,
+        "humidity_min": 46.1,
+        "humidity_max": 59.1,
+        "humidity_avg": 54.0
+      },
+      "Family Room": {
+        "temp_min": 73.6,
+        "temp_max": 76.9,
+        "temp_avg": 75.2,
+        "humidity_min": 40.0,
+        "humidity_max": 52.8,
+        "humidity_avg": 46.8
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-07-29",
+    "spend": 12.56,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.0,
+        "temp_max": 80.5,
+        "temp_avg": 78.8,
+        "humidity_min": 45.5,
+        "humidity_max": 60.9,
+        "humidity_avg": 53.0
+      },
+      "Family Room": {
+        "temp_min": 75.9,
+        "temp_max": 78.6,
+        "temp_avg": 77.2,
+        "humidity_min": 44.0,
+        "humidity_max": 52.4,
+        "humidity_avg": 46.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-07-30",
+    "spend": 15.71,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.9,
+        "temp_max": 83.0,
+        "temp_avg": 81.0,
+        "humidity_min": 49.3,
+        "humidity_max": 59.0,
+        "humidity_avg": 53.5
+      },
+      "Family Room": {
+        "temp_min": 74.7,
+        "temp_max": 78.4,
+        "temp_avg": 76.6,
+        "humidity_min": 40.2,
+        "humidity_max": 49.4,
+        "humidity_avg": 45.2
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-07-31",
+    "spend": 15.81,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.2,
+        "temp_max": 79.9,
+        "temp_avg": 78.1,
+        "humidity_min": 46.8,
+        "humidity_max": 57.6,
+        "humidity_avg": 51.0
+      },
+      "Family Room": {
+        "temp_min": 73.3,
+        "temp_max": 75.9,
+        "temp_avg": 74.6,
+        "humidity_min": 41.3,
+        "humidity_max": 53.6,
+        "humidity_avg": 46.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-01",
+    "spend": 14.28,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.8,
+        "temp_max": 81.3,
+        "temp_avg": 79.5,
+        "humidity_min": 49.9,
+        "humidity_max": 59.5,
+        "humidity_avg": 52.8
+      },
+      "Family Room": {
+        "temp_min": 75.2,
+        "temp_max": 77.5,
+        "temp_avg": 76.3,
+        "humidity_min": 43.4,
+        "humidity_max": 53.1,
+        "humidity_avg": 47.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-02",
+    "spend": 13.27,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.7,
+        "temp_max": 79.8,
+        "temp_avg": 78.2,
+        "humidity_min": 49.7,
+        "humidity_max": 61.1,
+        "humidity_avg": 51.6
+      },
+      "Family Room": {
+        "temp_min": 73.9,
+        "temp_max": 76.4,
+        "temp_avg": 75.2,
+        "humidity_min": 43.3,
+        "humidity_max": 50.4,
+        "humidity_avg": 47.7
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-03",
+    "spend": 13.58,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.4,
+        "temp_max": 81.2,
+        "temp_avg": 79.3,
+        "humidity_min": 47.9,
+        "humidity_max": 61.3,
+        "humidity_avg": 52.0
+      },
+      "Family Room": {
+        "temp_min": 73.7,
+        "temp_max": 76.8,
+        "temp_avg": 75.2,
+        "humidity_min": 41.1,
+        "humidity_max": 54.0,
+        "humidity_avg": 46.0
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-04",
+    "spend": 16.75,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.3,
+        "temp_max": 79.4,
+        "temp_avg": 77.8,
+        "humidity_min": 47.1,
+        "humidity_max": 55.4,
+        "humidity_avg": 51.9
+      },
+      "Family Room": {
+        "temp_min": 73.3,
+        "temp_max": 76.6,
+        "temp_avg": 74.9,
+        "humidity_min": 45.0,
+        "humidity_max": 51.2,
+        "humidity_avg": 47.9
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-05",
+    "spend": 15.22,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.6,
+        "temp_max": 81.6,
+        "temp_avg": 80.1,
+        "humidity_min": 46.3,
+        "humidity_max": 59.5,
+        "humidity_avg": 50.6
+      },
+      "Family Room": {
+        "temp_min": 75.2,
+        "temp_max": 78.6,
+        "temp_avg": 76.9,
+        "humidity_min": 42.2,
+        "humidity_max": 50.7,
+        "humidity_avg": 47.8
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-06",
+    "spend": 17.48,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.6,
+        "temp_max": 82.4,
+        "temp_avg": 80.5,
+        "humidity_min": 49.4,
+        "humidity_max": 57.1,
+        "humidity_avg": 53.2
+      },
+      "Family Room": {
+        "temp_min": 74.5,
+        "temp_max": 76.9,
+        "temp_avg": 75.7,
+        "humidity_min": 43.0,
+        "humidity_max": 48.9,
+        "humidity_avg": 47.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-07",
+    "spend": 13.94,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.6,
+        "temp_max": 82.9,
+        "temp_avg": 80.2,
+        "humidity_min": 45.1,
+        "humidity_max": 61.5,
+        "humidity_avg": 54.4
+      },
+      "Family Room": {
+        "temp_min": 74.6,
+        "temp_max": 76.6,
+        "temp_avg": 75.6,
+        "humidity_min": 44.2,
+        "humidity_max": 49.8,
+        "humidity_avg": 44.2
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-08",
+    "spend": 12.42,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.6,
+        "temp_max": 84.4,
+        "temp_avg": 81.5,
+        "humidity_min": 48.8,
+        "humidity_max": 60.4,
+        "humidity_avg": 50.6
+      },
+      "Family Room": {
+        "temp_min": 73.3,
+        "temp_max": 76.3,
+        "temp_avg": 74.8,
+        "humidity_min": 42.4,
+        "humidity_max": 51.3,
+        "humidity_avg": 45.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-09",
+    "spend": 16.38,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.6,
+        "temp_max": 82.9,
+        "temp_avg": 80.8,
+        "humidity_min": 46.0,
+        "humidity_max": 57.2,
+        "humidity_avg": 55.0
+      },
+      "Family Room": {
+        "temp_min": 73.6,
+        "temp_max": 76.7,
+        "temp_avg": 75.2,
+        "humidity_min": 43.2,
+        "humidity_max": 50.6,
+        "humidity_avg": 46.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-10",
+    "spend": 13.38,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.4,
+        "temp_max": 80.1,
+        "temp_avg": 78.2,
+        "humidity_min": 46.1,
+        "humidity_max": 55.5,
+        "humidity_avg": 53.2
+      },
+      "Family Room": {
+        "temp_min": 74.0,
+        "temp_max": 77.2,
+        "temp_avg": 75.6,
+        "humidity_min": 41.1,
+        "humidity_max": 53.4,
+        "humidity_avg": 47.4
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-11",
+    "spend": 12.79,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.2,
+        "temp_max": 79.9,
+        "temp_avg": 78.1,
+        "humidity_min": 49.7,
+        "humidity_max": 59.0,
+        "humidity_avg": 52.4
+      },
+      "Family Room": {
+        "temp_min": 75.0,
+        "temp_max": 77.4,
+        "temp_avg": 76.2,
+        "humidity_min": 43.9,
+        "humidity_max": 52.8,
+        "humidity_avg": 44.8
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-12",
+    "spend": 16.37,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.3,
+        "temp_max": 80.6,
+        "temp_avg": 78.4,
+        "humidity_min": 48.4,
+        "humidity_max": 61.9,
+        "humidity_avg": 50.5
+      },
+      "Family Room": {
+        "temp_min": 74.3,
+        "temp_max": 77.2,
+        "temp_avg": 75.8,
+        "humidity_min": 42.0,
+        "humidity_max": 50.0,
+        "humidity_avg": 47.4
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-13",
+    "spend": 13.67,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.7,
+        "temp_max": 80.3,
+        "temp_avg": 78.5,
+        "humidity_min": 46.2,
+        "humidity_max": 61.5,
+        "humidity_avg": 52.2
+      },
+      "Family Room": {
+        "temp_min": 74.3,
+        "temp_max": 77.1,
+        "temp_avg": 75.7,
+        "humidity_min": 44.3,
+        "humidity_max": 51.3,
+        "humidity_avg": 44.2
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-14",
+    "spend": 17.09,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 79.0,
+        "temp_max": 84.5,
+        "temp_avg": 81.8,
+        "humidity_min": 45.8,
+        "humidity_max": 58.4,
+        "humidity_avg": 51.1
+      },
+      "Family Room": {
+        "temp_min": 75.9,
+        "temp_max": 79.8,
+        "temp_avg": 77.8,
+        "humidity_min": 42.0,
+        "humidity_max": 48.4,
+        "humidity_avg": 45.5
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-15",
+    "spend": 14.54,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 79.0,
+        "temp_max": 82.8,
+        "temp_avg": 80.9,
+        "humidity_min": 49.8,
+        "humidity_max": 62.0,
+        "humidity_avg": 52.8
+      },
+      "Family Room": {
+        "temp_min": 75.4,
+        "temp_max": 78.3,
+        "temp_avg": 76.8,
+        "humidity_min": 43.6,
+        "humidity_max": 48.9,
+        "humidity_avg": 45.2
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-16",
+    "spend": 12.34,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.9,
+        "temp_max": 83.6,
+        "temp_avg": 81.2,
+        "humidity_min": 47.9,
+        "humidity_max": 58.5,
+        "humidity_avg": 54.3
+      },
+      "Family Room": {
+        "temp_min": 74.6,
+        "temp_max": 78.1,
+        "temp_avg": 76.3,
+        "humidity_min": 40.8,
+        "humidity_max": 53.8,
+        "humidity_avg": 44.3
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-17",
+    "spend": 12.72,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.6,
+        "temp_max": 81.4,
+        "temp_avg": 79.0,
+        "humidity_min": 49.5,
+        "humidity_max": 56.7,
+        "humidity_avg": 53.0
+      },
+      "Family Room": {
+        "temp_min": 75.0,
+        "temp_max": 77.5,
+        "temp_avg": 76.2,
+        "humidity_min": 43.1,
+        "humidity_max": 50.5,
+        "humidity_avg": 46.3
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-18",
+    "spend": 13.43,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.6,
+        "temp_max": 83.4,
+        "temp_avg": 80.5,
+        "humidity_min": 47.0,
+        "humidity_max": 59.7,
+        "humidity_avg": 51.5
+      },
+      "Family Room": {
+        "temp_min": 73.6,
+        "temp_max": 77.0,
+        "temp_avg": 75.3,
+        "humidity_min": 41.6,
+        "humidity_max": 52.5,
+        "humidity_avg": 44.3
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-19",
+    "spend": 13.28,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.4,
+        "temp_max": 83.4,
+        "temp_avg": 80.4,
+        "humidity_min": 46.3,
+        "humidity_max": 61.5,
+        "humidity_avg": 54.4
+      },
+      "Family Room": {
+        "temp_min": 76.0,
+        "temp_max": 78.1,
+        "temp_avg": 77.0,
+        "humidity_min": 44.4,
+        "humidity_max": 50.2,
+        "humidity_avg": 44.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-20",
+    "spend": 15.92,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.5,
+        "temp_max": 83.6,
+        "temp_avg": 81.0,
+        "humidity_min": 45.0,
+        "humidity_max": 60.7,
+        "humidity_avg": 51.5
+      },
+      "Family Room": {
+        "temp_min": 74.8,
+        "temp_max": 78.8,
+        "temp_avg": 76.8,
+        "humidity_min": 43.3,
+        "humidity_max": 53.6,
+        "humidity_avg": 44.5
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-21",
+    "spend": 15.63,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.3,
+        "temp_max": 79.6,
+        "temp_avg": 77.9,
+        "humidity_min": 48.6,
+        "humidity_max": 56.4,
+        "humidity_avg": 53.2
+      },
+      "Family Room": {
+        "temp_min": 74.7,
+        "temp_max": 77.2,
+        "temp_avg": 76.0,
+        "humidity_min": 41.3,
+        "humidity_max": 50.9,
+        "humidity_avg": 47.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-22",
+    "spend": 12.02,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.5,
+        "temp_max": 81.8,
+        "temp_avg": 80.2,
+        "humidity_min": 48.9,
+        "humidity_max": 59.5,
+        "humidity_avg": 51.3
+      },
+      "Family Room": {
+        "temp_min": 74.3,
+        "temp_max": 76.9,
+        "temp_avg": 75.6,
+        "humidity_min": 43.7,
+        "humidity_max": 51.3,
+        "humidity_avg": 45.7
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-23",
+    "spend": 15.27,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.0,
+        "temp_max": 79.2,
+        "temp_avg": 77.6,
+        "humidity_min": 49.2,
+        "humidity_max": 59.1,
+        "humidity_avg": 50.7
+      },
+      "Family Room": {
+        "temp_min": 75.6,
+        "temp_max": 79.4,
+        "temp_avg": 77.5,
+        "humidity_min": 40.6,
+        "humidity_max": 49.8,
+        "humidity_avg": 47.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-24",
+    "spend": 13.5,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.4,
+        "temp_max": 84.0,
+        "temp_avg": 81.2,
+        "humidity_min": 45.5,
+        "humidity_max": 60.5,
+        "humidity_avg": 54.4
+      },
+      "Family Room": {
+        "temp_min": 75.7,
+        "temp_max": 78.1,
+        "temp_avg": 76.9,
+        "humidity_min": 42.0,
+        "humidity_max": 51.7,
+        "humidity_avg": 44.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-25",
+    "spend": 17.29,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.8,
+        "temp_max": 84.4,
+        "temp_avg": 81.6,
+        "humidity_min": 45.1,
+        "humidity_max": 60.2,
+        "humidity_avg": 51.7
+      },
+      "Family Room": {
+        "temp_min": 75.9,
+        "temp_max": 79.5,
+        "temp_avg": 77.7,
+        "humidity_min": 44.7,
+        "humidity_max": 52.8,
+        "humidity_avg": 47.5
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-26",
+    "spend": 17.23,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.4,
+        "temp_max": 82.2,
+        "temp_avg": 80.3,
+        "humidity_min": 49.3,
+        "humidity_max": 56.6,
+        "humidity_avg": 54.1
+      },
+      "Family Room": {
+        "temp_min": 75.4,
+        "temp_max": 77.6,
+        "temp_avg": 76.5,
+        "humidity_min": 42.3,
+        "humidity_max": 49.8,
+        "humidity_avg": 47.2
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-27",
+    "spend": 17.19,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.7,
+        "temp_max": 79.8,
+        "temp_avg": 78.2,
+        "humidity_min": 49.8,
+        "humidity_max": 57.0,
+        "humidity_avg": 53.2
+      },
+      "Family Room": {
+        "temp_min": 73.6,
+        "temp_max": 76.3,
+        "temp_avg": 74.9,
+        "humidity_min": 42.0,
+        "humidity_max": 53.9,
+        "humidity_avg": 46.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-28",
+    "spend": 17.78,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.8,
+        "temp_max": 82.1,
+        "temp_avg": 80.4,
+        "humidity_min": 46.3,
+        "humidity_max": 55.8,
+        "humidity_avg": 52.2
+      },
+      "Family Room": {
+        "temp_min": 75.9,
+        "temp_max": 78.3,
+        "temp_avg": 77.1,
+        "humidity_min": 43.6,
+        "humidity_max": 49.9,
+        "humidity_avg": 46.4
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-29",
+    "spend": 16.25,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.5,
+        "temp_max": 81.7,
+        "temp_avg": 79.6,
+        "humidity_min": 45.0,
+        "humidity_max": 61.5,
+        "humidity_avg": 52.7
+      },
+      "Family Room": {
+        "temp_min": 74.7,
+        "temp_max": 77.2,
+        "temp_avg": 76.0,
+        "humidity_min": 43.6,
+        "humidity_max": 52.5,
+        "humidity_avg": 46.7
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-30",
+    "spend": 13.88,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.1,
+        "temp_max": 80.3,
+        "temp_avg": 78.7,
+        "humidity_min": 49.2,
+        "humidity_max": 60.0,
+        "humidity_avg": 51.5
+      },
+      "Family Room": {
+        "temp_min": 75.0,
+        "temp_max": 77.7,
+        "temp_avg": 76.3,
+        "humidity_min": 41.5,
+        "humidity_max": 50.5,
+        "humidity_avg": 45.6
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-08-31",
+    "spend": 16.06,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 76.9,
+        "temp_max": 80.3,
+        "temp_avg": 78.6,
+        "humidity_min": 49.5,
+        "humidity_max": 59.3,
+        "humidity_avg": 51.5
+      },
+      "Family Room": {
+        "temp_min": 74.3,
+        "temp_max": 78.2,
+        "temp_avg": 76.2,
+        "humidity_min": 42.7,
+        "humidity_max": 48.0,
+        "humidity_avg": 45.1
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-09-01",
+    "spend": 14.65,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.3,
+        "temp_max": 82.0,
+        "temp_avg": 79.7,
+        "humidity_min": 46.1,
+        "humidity_max": 58.3,
+        "humidity_avg": 54.5
+      },
+      "Family Room": {
+        "temp_min": 75.0,
+        "temp_max": 77.9,
+        "temp_avg": 76.5,
+        "humidity_min": 44.0,
+        "humidity_max": 49.0,
+        "humidity_avg": 44.3
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-09-02",
+    "spend": 16.51,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 77.5,
+        "temp_max": 82.4,
+        "temp_avg": 80.0,
+        "humidity_min": 48.4,
+        "humidity_max": 56.6,
+        "humidity_avg": 51.0
+      },
+      "Family Room": {
+        "temp_min": 74.0,
+        "temp_max": 77.6,
+        "temp_avg": 75.8,
+        "humidity_min": 40.1,
+        "humidity_max": 49.5,
+        "humidity_avg": 45.9
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-09-03",
+    "spend": 13.17,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.5,
+        "temp_max": 81.7,
+        "temp_avg": 80.1,
+        "humidity_min": 48.5,
+        "humidity_max": 58.5,
+        "humidity_avg": 51.2
+      },
+      "Family Room": {
+        "temp_min": 74.2,
+        "temp_max": 77.5,
+        "temp_avg": 75.8,
+        "humidity_min": 43.3,
+        "humidity_max": 48.0,
+        "humidity_avg": 47.0
+      }
+    }
+  },
+  {
+    "type": "daily",
+    "date": "2026-09-04",
+    "spend": 17.75,
+    "zones": {
+      "Bedroom": {
+        "temp_min": 78.3,
+        "temp_max": 81.6,
+        "temp_avg": 79.9,
+        "humidity_min": 47.6,
+        "humidity_max": 55.4,
+        "humidity_avg": 51.2
+      },
+      "Family Room": {
+        "temp_min": 74.3,
+        "temp_max": 76.7,
+        "temp_avg": 75.5,
+        "humidity_min": 44.2,
+        "humidity_max": 50.7,
+        "humidity_avg": 47.2
+      }
+    }
+  }
+]

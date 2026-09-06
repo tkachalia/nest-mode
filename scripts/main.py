@@ -158,7 +158,7 @@ def finalize_day_if_rolled_over(state: dict, today_iso: str) -> None:
     state["day_accumulator"] = None
 
 
-
+def main():
     raw_config = load_json(CONFIG_PATH)
     config = effective_config(raw_config)
     state = load_json(STATE_PATH)

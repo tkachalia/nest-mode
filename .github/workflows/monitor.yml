@@ -1,0 +1,54 @@
+name: Monitor and adjust
+
+on:
+  schedule:
+    # Every 15 minutes. GitHub may delay this slightly under load; that's fine.
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write config from secret
+        # Store your whole config.json content as a single GitHub Actions
+        # secret named CONFIG_JSON (Settings -> Secrets and variables ->
+        # Actions -> New repository secret). Never commit config.json itself.
+        run: echo '${{ secrets.CONFIG_JSON }}' > config.json
+
+      - name: Run monitor
+        run: python scripts/main.py
+
+      - name: Commit updated state
+        run: |
+          rm -f config.json
+          git config user.name "nest-budget-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add dashboard/state.json
+          git diff --quiet --cached || git commit -m "Update state $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+  deploy-pages:
+    needs: run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+      - uses: actions/deploy-pages@v4

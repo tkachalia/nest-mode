@@ -1,37 +1,37 @@
 {
   "current_month": 9,
   "month_spend_dollars": 32.49387867273333,
-  "last_run_iso": "2026-09-12T05:07:49.261417+00:00",
+  "last_run_iso": "2026-09-12T09:23:16.089286+00:00",
   "last_duke_pull_date": "2026-09-12",
   "day_accumulator": {
     "date": "2026-09-12",
     "spend_at_start": 29.92274090866666,
     "zones": {
       "Bedroom": {
-        "temp_min": 76.6,
+        "temp_min": 76.2,
         "temp_max": 76.7,
-        "temp_sum": 153.3,
+        "temp_sum": 229.5,
         "humidity_min": null,
         "humidity_max": null,
         "humidity_sum": 0.0,
-        "count": 2
+        "count": 3
       },
       "Family Room": {
         "temp_min": 76.7,
         "temp_max": 77.5,
-        "temp_sum": 154.2,
+        "temp_sum": 230.89999999999998,
         "humidity_min": null,
         "humidity_max": null,
         "humidity_sum": 0.0,
-        "count": 2
+        "count": 3
       }
     }
   },
   "zones": {
     "Bedroom": {
       "mode": "COOL",
-      "hvac_status": "COOLING",
-      "ambient_f": 76.7,
+      "hvac_status": "OFF",
+      "ambient_f": 76.2,
       "heat_setpoint_f": null,
       "cool_setpoint_f": 76.0
     },

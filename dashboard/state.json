@@ -1,55 +1,55 @@
 {
   "current_month": 9,
-  "month_spend_dollars": 28.75302824473333,
-  "last_run_iso": "2026-09-11T22:27:00.937237+00:00",
-  "last_duke_pull_date": "2026-09-11",
+  "month_spend_dollars": 29.92274090866666,
+  "last_run_iso": "2026-09-12T00:32:20.518648+00:00",
+  "last_duke_pull_date": "2026-09-12",
   "day_accumulator": {
-    "date": "2026-09-11",
-    "spend_at_start": 20.907487496466665,
+    "date": "2026-09-12",
+    "spend_at_start": 29.92274090866666,
     "zones": {
       "Bedroom": {
-        "temp_min": 75.8,
-        "temp_max": 78.7,
-        "temp_sum": 463.6,
+        "temp_min": 76.6,
+        "temp_max": 76.6,
+        "temp_sum": 76.6,
         "humidity_min": null,
         "humidity_max": null,
         "humidity_sum": 0.0,
-        "count": 6
+        "count": 1
       },
       "Family Room": {
-        "temp_min": 77.3,
-        "temp_max": 77.6,
-        "temp_sum": 464.7,
+        "temp_min": 77.5,
+        "temp_max": 77.5,
+        "temp_sum": 77.5,
         "humidity_min": null,
         "humidity_max": null,
         "humidity_sum": 0.0,
-        "count": 6
+        "count": 1
       }
     }
   },
   "zones": {
     "Bedroom": {
       "mode": "COOL",
-      "hvac_status": "COOLING",
-      "ambient_f": 78.3,
+      "hvac_status": "OFF",
+      "ambient_f": 76.6,
       "heat_setpoint_f": null,
-      "cool_setpoint_f": 76.0
+      "cool_setpoint_f": 77.1
     },
     "Family Room": {
       "mode": "COOL",
       "hvac_status": "COOLING",
       "ambient_f": 77.5,
       "heat_setpoint_f": null,
-      "cool_setpoint_f": 77.6
+      "cool_setpoint_f": 74.5
     }
   },
   "projection": {
-    "spend_so_far": 28.75,
-    "avg_daily_spend": 2.88,
-    "projected_total": 86.26,
+    "spend_so_far": 29.92,
+    "avg_daily_spend": 2.72,
+    "projected_total": 81.61,
     "budget": 250,
-    "over_under": -163.74,
-    "pct_of_budget": 35
+    "over_under": -168.39,
+    "pct_of_budget": 33
   },
   "decisions": {
     "Bedroom": {
